@@ -1,0 +1,75 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp7
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Random rnd = new Random();
+
+            Console.Write("Количество чисел : "); 
+            int kol = Convert.ToInt16(Console.ReadLine());
+            Console.WriteLine(" ");
+
+            Console.Write("Диапазон 1 : ");
+            int dep1 = Convert.ToInt16(Console.ReadLine());
+            Console.WriteLine(" ");
+
+            Console.Write("Диапазон 2 : ");
+            int dep2 = Convert.ToInt16(Console.ReadLine());
+            Console.WriteLine(" ");
+
+            if (kol > (dep2 - dep1))
+            {
+                Console.WriteLine("Количество чисел меньше диапазона допустимых");
+
+            }
+            else
+            {
+                int[] arr = new int[kol];
+                for (int i = 0; i < arr.Length; i++)
+                {
+
+                    int rndnow, o = 0;
+                    while (true) // Создаем цикл в котором выдается число и проверяется на совпадение
+                    {
+                        rndnow = rnd.Next(dep1 - 1, dep2 + 1); // Слуайное число
+                        for (int j = 0; j < arr.Length; j++) // Проверяем совпадение
+                        {
+                            //Console.Write("x");
+                            if (rndnow == arr[j]) //
+                            {
+                                //Console.Write("!!!!!");
+                                o = 1; // Найдено совпадение
+                                break;
+                            }
+
+                        }
+                        if (o == 1) //Если совпадение найдено запускаем цикл генирации заного
+                        {
+                            o = 0;
+                            continue;
+                        }
+
+                        o = 0; 
+                        arr[i] = rndnow;
+                        Console.Write("{0}={1}. \n", i + 1, arr[i]);
+                        break; //Выходим с цикла
+
+
+                    }
+
+                    
+                }
+            }
+
+
+            
+        }
+    }
+}
